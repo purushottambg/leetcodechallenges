@@ -1,6 +1,6 @@
 public class Q1CheckPalindromNums {
     public static void main(String[] args) {
-        int num=110011;
+        int num=10;
         int original=num;
         int reverse=0;
         while(num>9){

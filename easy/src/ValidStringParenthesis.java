@@ -1,39 +1,32 @@
+import java.util.Stack;
+
 public class ValidStringParenthesis {
     public static void main(String[] args) {
 
-        String string =  "{{}{()[}]}";
+        String string =  "{{}{}()[]}[]()}";
         System.out.println("Is Boolean:"+isValid(string));
     }
     private static boolean isValid(String s) {
-        int curly=0;
-        int soft=0;
-        int square=0;
+
         char[] chars = s.toCharArray();
+        Stack<Character> braces = new Stack<>();
 
         for (char c: chars){
-            switch (c){
-                case '{':
-                    curly++;
-                    break;
-                case '(':
-                    soft++;
-                    break;
-                case '[':
-                    square++;
-                    break;
-                case '}':
-                    curly--;
-                    break;
-                case ')':
-                    soft--;
-                    break;
-                case ']':
-                    square++;
-                    break;
+            if(c=='{' || c=='(' || c=='['){
+                braces.push(c);
+                System.out.println("adding "+c+", to -> "+braces);
+            } else if(braces.isEmpty()) {
+                System.out.println(c+" can't be first element");
+                return false;
+            }else if (braces.peek()=='{' && c=='}' || braces.peek()=='(' && c==')' || braces.peek()=='[' && c==']' ) {
+                System.out.println(c+" poped!");
+                braces.pop();
+            }else{
+                return false;
             }
         }
 
-        if (curly==0 && soft==0 && square==0){
+        if (braces.isEmpty()){
             return true;
         }
         return false;

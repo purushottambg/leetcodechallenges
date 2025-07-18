@@ -7,6 +7,7 @@ public class CheckValidWord3136 {
         boolean vowel=false;
         boolean consonant =false;
         boolean digit =false;
+        boolean specialChar =true;
          for (char c: str.toCharArray()){
              if(c=='A' || c=='E' || c=='I' || c=='O' || c=='U' ||c=='a' || c=='e' || c=='i' || c=='o' || c=='u' ){
                  vowel=true;
@@ -19,7 +20,10 @@ public class CheckValidWord3136 {
              if (c>='0' && c<='9' ){
                  digit=true;
              }
+             if(c>=':' && c<='@'){
+                 specialChar=false;
+             }
          }
-         return vowel&&consonant&&digit;
+         return vowel&&consonant&&digit&&specialChar;
     }
 }
